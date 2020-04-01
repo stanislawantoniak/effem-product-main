@@ -69,4 +69,3 @@ class ProductAPI extends SalsifyTokenSource {
 }
 
 module.exports = ProductAPI;
-
