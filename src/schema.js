@@ -2,20 +2,6 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 
-scalar _Any
-
-# a union of all types that use the @key directive
-union _Entity = Product
-
-type _Service {
-  sdl: String
-}
-
-extend type Query {
-  _entities(representations: [_Any!]!): [_Entity]!
-  _service: _Service!
-}
-
 type Product @key(fields: "id") {
   id: ID!
   systemId: String
