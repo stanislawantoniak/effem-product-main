@@ -9,11 +9,13 @@ dotenv.config();
 
 const { buildFederatedSchema } = require('@apollo/federation');
 
-const server = new ApolloServer({
-	schema: buildFederatedSchema([{
+const schema = buildFederatedSchema([{
 		typeDefs,
 		resolvers
-	}]),
+	}]);
+
+const server = new ApolloServer({
+	schema: schema,
 	dataSources: () => ({
 		productAPI: new ProductAPI()
 	}),
@@ -21,7 +23,7 @@ const server = new ApolloServer({
 		apiKey: process.env.AGM_API_KEY,
 		schemaTag: process.env.AGM_SCHEMA_TAG
 	}
-});
+}); 
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
 	console.log(`🚀 Server ready at ${url}`);
