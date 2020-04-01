@@ -13,7 +13,6 @@ type Product @key(fields: "id") {
   retailPrice: Float
 }
 
-
 type Query {
   products: [Product]!
   product(id: ID!): Product
@@ -38,6 +37,9 @@ input ProductInput {
 type Mutation {
   updateProduct(product: ProductInput!): UpdateProductResponse
 }
+
+scalar _FieldSet
+directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
 
 `;
 

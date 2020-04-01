@@ -4,6 +4,9 @@ const resolvers = require('./resolvers');
 
 const ProductAPI = require('./datasources/product');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -11,7 +14,8 @@ const server = new ApolloServer({
     productAPI: new ProductAPI()
   }),
   engine: {
-    apiKey: process.env.ENGINE_API_KEY
+    apiKey: process.env.AGM_API_KEY,
+    schemaTag: process.env.AGM_SCHEMA_TAG
   }
 });
 
