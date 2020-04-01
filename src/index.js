@@ -11,7 +11,7 @@ const server = new ApolloServer({
     productAPI: new ProductAPI()
   }),
   engine: {
-    apiKey: "service:"+process.env.GQL_SCHEMA_NAME+":"+process.env.ENGINE_API_KEY
+    apiKey: process.env.ENGINE_API_KEY
   }
 });
 
