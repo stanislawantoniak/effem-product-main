@@ -18,11 +18,7 @@ const server = new ApolloServer({
 	schema: schema,
 	dataSources: () => ({
 		productAPI: new ProductAPI()
-	}),
-	engine: {
-		apiKey: process.env.AGM_API_KEY,
-		schemaTag: process.env.AGM_SCHEMA_TAG
-	}
+	})
 }); 
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
