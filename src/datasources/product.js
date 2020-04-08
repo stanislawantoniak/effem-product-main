@@ -1,17 +1,15 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class SalsifyTokenSource extends RESTDataSource {
-  willSendRequest(request) {
-    request.headers.set('Authorization', 'Bearer ' + process.env.SALSIFY_KEY);
-	//console.log('salsify key: ',process.env.SALSIFY_KEY);
-  }
-}
-
-class ProductAPI extends SalsifyTokenSource {
+class ProductAPI extends RESTDataSource {
 
   constructor() {
     super();
     this.baseURL = 'https://app.salsify.com/api/v1/orgs/s-81e351da-195f-412c-8fd8-f011973f6ab1/';
+  }
+
+  willSendRequest(request) {
+    request.headers.set('Authorization', 'Bearer ' + process.env.SALSIFY_KEY);
+	//console.log('salsify key: ',process.env.SALSIFY_KEY);
   }
 
   async getProductById( id ) {
