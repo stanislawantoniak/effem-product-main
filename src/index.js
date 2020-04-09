@@ -1,6 +1,8 @@
 const { ApolloServer, AuthenticationError } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
+const { AuthDirective } = require('./authdirecive');
+
 
 const ProductAPI = require('./datasources/product');
 
@@ -11,7 +13,10 @@ const { buildFederatedSchema } = require('@apollo/federation');
 
 const schema = buildFederatedSchema([{
 	typeDefs,
-	resolvers
+	resolvers,
+	schemaDirectives: {
+		auth: AuthDirective
+	}
 }]);
 
 const server = new ApolloServer({
@@ -24,7 +29,7 @@ const server = new ApolloServer({
 
 		const user = JSON.parse(new Buffer(userbase64, 'base64').toString());
 
-		if (!user.authenticated) throw new AuthenticationError('Unauthorized: You must pass valid user data here.');
+		//if (!user.authenticated) throw new AuthenticationError('Unauthorized: You must pass valid user data here.');
 
 		console.log('user from upstream: ', user);
 		// add the user to the context

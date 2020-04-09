@@ -2,13 +2,23 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 
+directive @auth(
+  requires: Role = ADMIN,
+) on FIELD_DEFINITION
+
+enum Role {
+  ADMIN
+  USER
+  UNDEFINED
+}
+
 type Product @key(fields: "id") {
   id: ID!
   systemId: String
   name: String
-  brand: String
-  description: String
-  cost: Float
+  brand: String @auth(requires: ADMIN)
+  description: String 
+  cost: Float @auth(requires: ADMIN)
   SAPProductTitle: String
   retailPrice: Float
 }
