@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer, AuthenticationError } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
