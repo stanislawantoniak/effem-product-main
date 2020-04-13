@@ -16,10 +16,10 @@ type Product @key(fields: "id") {
   id: ID!
   systemId: String
   name: String
-  brand: String @auth(requires: ADMIN)
+  brand: String 
   description: String 
   cost: Float @auth(requires: ADMIN)
-  SAPProductTitle: String
+  SAPProductTitle: String @auth(requires: ADMIN)
   retailPrice: Float
 }
 
