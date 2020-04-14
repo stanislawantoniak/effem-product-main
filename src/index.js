@@ -18,13 +18,19 @@ const schema = buildFederatedSchema([{
 
 SchemaDirectiveVisitor.visitSchemaDirectives(schema, { auth: AuthDirective });
 
-
 const server = new ApolloServer({
 	schema: schema,
 	dataSources: () => ({
 		productAPI: new ProductAPI()
 	}),
 	context: ({ req }) => {
+		/*{
+			token: 'effem_playground',
+		   	userName: 'Playground Admin',
+			role: 'ADMIN,UNDEFINED',
+			authenticated: true
+		}*/
+		
 		var userbase64 = req.headers['x-user-data'] || '';
 
 		const user = userbase64 == '' ? { authenticated: false, role: ''} : JSON.parse(new Buffer(userbase64, 'base64').toString());
