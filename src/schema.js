@@ -25,8 +25,10 @@ type Product @key(fields: "id") {
   cost: Float @auth(requires: ADMIN)
   """Internal product name used in MARS backoffice system."""
   SAPProductTitle: String @auth(requires: ADMIN)
-  """Suggested retail price."""
+  """Suggested retail price (test)."""
   suggestedRetailPrice: Float
+  """Suggested retail price."""
+  retailPrice: Float
   """Product weight in kg."""
   weight: Float
 }
